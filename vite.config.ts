@@ -4,7 +4,7 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // https://vite.dev/config/
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/me/' : '/',
+  base: command === 'build' ? '/about/' : '/',
   plugins: [
     tanstackRouter({
       target: 'react',

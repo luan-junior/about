@@ -4,12 +4,12 @@
 
 This is my personal portfolio: a living snapshot of who I am, what I have shipped, and how I work. From production systems at scale to side projects that taught me something new, everything here is meant to be explored.
 
-**[Open the live site](https://luan-junior.github.io/me/)** · [GitHub](https://github.com/luan-junior) · [LinkedIn](https://www.linkedin.com/in/luan-junior-silva-b3476812b/)
+**[Open the live site](https://luan-junior.github.io/about/)** · [GitHub](https://github.com/luan-junior) · [LinkedIn](https://www.linkedin.com/in/luan-junior-silva-b3476812b/)
 
 [![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vite.dev)
-[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://luan-junior.github.io/me/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub_Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://luan-junior.github.io/about/)
 
 ---
 
@@ -34,13 +34,13 @@ Switch the language anytime. The UI is available in **Portuguese**, **English**,
 
 ## Built with
 
-| Layer | Stack |
-| --- | --- |
-| UI | React 19, TypeScript, styled-components |
-| Routing | TanStack Router |
-| i18n | i18next |
-| Tooling | Vite 7, ESLint |
-| Delivery | GitHub Actions → GitHub Pages |
+| Layer    | Stack                                   |
+| -------- | --------------------------------------- |
+| UI       | React 19, TypeScript, styled-components |
+| Routing  | TanStack Router                         |
+| i18n     | i18next                                 |
+| Tooling  | Vite 7, ESLint                          |
+| Delivery | GitHub Actions → GitHub Pages           |
 
 Every push to `main` builds the app and publishes it automatically.
 
@@ -64,4 +64,5 @@ npm run lint     # lint the source
 If you are hiring, collaborating, or just curious about a project, I would like to hear from you.
 
 **[luan.juniorght7@gmail.com](mailto:luan.juniorght7@gmail.com)** · **[github.com/luan-junior](https://github.com/luan-junior)**
+
 # about
