@@ -1,0 +1,4 @@
+{
+  "name": "My Dev Container",
+  "dockerContext": "desktop-linux"
+}
