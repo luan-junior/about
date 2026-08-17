@@ -10,8 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SoftSkillsRouteImport } from './routes/soft-skills'
-import { Route as HobbiesRouteImport } from './routes/hobbies'
-import { Route as HardSkillsRouteImport } from './routes/hard-skills'
 import { Route as FamilyRouteImport } from './routes/family'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -21,16 +19,6 @@ import { Route as PostPostIdRouteImport } from './routes/post/$postId'
 const SoftSkillsRoute = SoftSkillsRouteImport.update({
   id: '/soft-skills',
   path: '/soft-skills',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HobbiesRoute = HobbiesRouteImport.update({
-  id: '/hobbies',
-  path: '/hobbies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HardSkillsRoute = HardSkillsRouteImport.update({
-  id: '/hard-skills',
-  path: '/hard-skills',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FamilyRoute = FamilyRouteImport.update({
@@ -64,8 +52,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/family': typeof FamilyRoute
-  '/hard-skills': typeof HardSkillsRoute
-  '/hobbies': typeof HobbiesRoute
   '/soft-skills': typeof SoftSkillsRoute
   '/post/$postId': typeof PostPostIdRoute
 }
@@ -74,8 +60,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/family': typeof FamilyRoute
-  '/hard-skills': typeof HardSkillsRoute
-  '/hobbies': typeof HobbiesRoute
   '/soft-skills': typeof SoftSkillsRoute
   '/post/$postId': typeof PostPostIdRoute
 }
@@ -85,8 +69,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/family': typeof FamilyRoute
-  '/hard-skills': typeof HardSkillsRoute
-  '/hobbies': typeof HobbiesRoute
   '/soft-skills': typeof SoftSkillsRoute
   '/post/$postId': typeof PostPostIdRoute
 }
@@ -97,28 +79,16 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/family'
-    | '/hard-skills'
-    | '/hobbies'
     | '/soft-skills'
     | '/post/$postId'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/contact'
-    | '/family'
-    | '/hard-skills'
-    | '/hobbies'
-    | '/soft-skills'
-    | '/post/$postId'
+  to: '/' | '/about' | '/contact' | '/family' | '/soft-skills' | '/post/$postId'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
     | '/family'
-    | '/hard-skills'
-    | '/hobbies'
     | '/soft-skills'
     | '/post/$postId'
   fileRoutesById: FileRoutesById
@@ -128,8 +98,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   FamilyRoute: typeof FamilyRoute
-  HardSkillsRoute: typeof HardSkillsRoute
-  HobbiesRoute: typeof HobbiesRoute
   SoftSkillsRoute: typeof SoftSkillsRoute
   PostPostIdRoute: typeof PostPostIdRoute
 }
@@ -141,20 +109,6 @@ declare module '@tanstack/react-router' {
       path: '/soft-skills'
       fullPath: '/soft-skills'
       preLoaderRoute: typeof SoftSkillsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hobbies': {
-      id: '/hobbies'
-      path: '/hobbies'
-      fullPath: '/hobbies'
-      preLoaderRoute: typeof HobbiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hard-skills': {
-      id: '/hard-skills'
-      path: '/hard-skills'
-      fullPath: '/hard-skills'
-      preLoaderRoute: typeof HardSkillsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/family': {
@@ -200,8 +154,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   FamilyRoute: FamilyRoute,
-  HardSkillsRoute: HardSkillsRoute,
-  HobbiesRoute: HobbiesRoute,
   SoftSkillsRoute: SoftSkillsRoute,
   PostPostIdRoute: PostPostIdRoute,
 }

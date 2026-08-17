@@ -33,6 +33,9 @@ import { Experiences } from '@/components/Experiences'
 import { Training } from '@/components/Training'
 import { Contact } from '@/components/Contact'
 
+const cv =
+  'https://luan-junior.github.io/about/assets/cv/Luan_Júnior_da_Silva.pdf'
+
 export const Home = () => {
   const { translator } = useTranslate()
   return (
@@ -86,7 +89,7 @@ export const Home = () => {
                     </svg>
                   </ButtonPrimarySpan>
                 </ButtonPrimary>
-                <ButtonPrimaryDownloadLink>
+                <ButtonPrimaryDownloadLink href={cv} target="_blank">
                   <ButtonPrimaryDownload>
                     <ButtonPrimaryDownloadSpan>
                       <svg
