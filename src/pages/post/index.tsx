@@ -74,7 +74,9 @@ export const Post = ({ postId }: Props) => {
           <ContainerContentHeader>
             <div>
               <Title>{projectData?.title}</Title>
-              <Description>{translator(projectData?.description ?? '')}</Description>
+              <Description>
+                {translator(projectData?.description ?? '')}
+              </Description>
               <Flex
                 gap=".75rem"
                 flexWrap="wrap"
@@ -90,7 +92,10 @@ export const Post = ({ postId }: Props) => {
                 ))}
               </Flex>
               <Flex gap="1rem" flexWrap="wrap">
-                <HeaderLink href={projectData?.projectLink} target="_blank">
+                <HeaderLink
+                  href={projectData?.projectLinkGithub}
+                  target="_blank"
+                >
                   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
                       stroke-linecap="round"
