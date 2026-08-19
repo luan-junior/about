@@ -37,6 +37,14 @@ import cv from '@/assets/cv/Curriculo Luan Júnior da Silva.pdf'
 
 export const Home = () => {
   const { translator } = useTranslate()
+
+  const scrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+
   return (
     <>
       <Container>
@@ -63,10 +71,7 @@ export const Home = () => {
                 <span>{translator('reality')}</span>.
               </Text>
               <ContentApresentationContainerButton>
-                <ButtonPrimary
-                  data-v-e2549072=""
-                  className="group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-10 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/30 btn-primary"
-                >
+                <ButtonPrimary type="button" onClick={scrollToProjects}>
                   <ButtonPrimarySpan>
                     <span data-v-e2549072="">
                       {translator('View Projects')}

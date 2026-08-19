@@ -9,7 +9,9 @@ type ProjectContentLinkProps = {
   disabled?: boolean
 }
 
-export const Container = styled.div``
+export const Container = styled.div`
+  scroll-margin-top: 5.5rem;
+`
 
 export const SectionCarousel = styled.div`
   position: relative;

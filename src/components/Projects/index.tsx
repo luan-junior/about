@@ -82,7 +82,7 @@ export const Projects = () => {
   const atEnd = activeIndex >= maxIndex
 
   return (
-    <Container>
+    <Container id="projects">
       <Title title={translator('Projects')} />
       <SectionCarousel>
         <SectionCarouselContainer>
