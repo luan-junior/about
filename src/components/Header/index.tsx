@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
@@ -11,6 +12,7 @@ import {
   MenuContentLink,
   ButtonMenuMobile,
   ContentWrap,
+  MobileMenuLayer,
   MobileMenuBackdrop,
   MobileMenuPanel,
   MobileMenuClose,
@@ -76,90 +78,95 @@ export const Header = () => {
   const closeMobileMenu = () => setMobileMenuOpen(false)
 
   return (
-    <Container>
-      <ContentNav aria-label={translator('Main')}>
-        <Content>
-          <ContentLogo
-            role="button"
-            tabIndex={0}
-            onClick={() => navigate({ to: '/' })}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault()
-                navigate({ to: '/' })
-              }
-            }}
+    <>
+      <Container>
+        <ContentNav aria-label={translator('Main')}>
+          <Content>
+            <ContentLogo
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate({ to: '/' })}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  navigate({ to: '/' })
+                }
+              }}
+            >
+              {text}
+            </ContentLogo>
+            <ContentWrap>
+              <MenuContent>
+                {MENU.map((link) => (
+                  <MenuContentLink
+                    key={link.label}
+                    active={isRouteActive(link.to, pathname)}
+                  >
+                    <Link to={link.to}>{translator(link.label)}</Link>
+                  </MenuContentLink>
+                ))}
+                <OptionLanguage />
+              </MenuContent>
+              <ButtonMenuMobile
+                type="button"
+                aria-label={
+                  mobileMenuOpen
+                    ? translator('Close menu')
+                    : translator('Open menu')
+                }
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-navigation"
+                $open={mobileMenuOpen}
+                onClick={() =>
+                  mobileMenuOpen ? closeMobileMenu() : openMobileMenu()
+                }
+              >
+                {mobileMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
+              </ButtonMenuMobile>
+            </ContentWrap>
+          </Content>
+        </ContentNav>
+      </Container>
+      {createPortal(
+        <MobileMenuLayer $open={mobileMenuOpen}>
+          <MobileMenuBackdrop
+            type="button"
+            aria-label={translator('Close menu')}
+            tabIndex={mobileMenuOpen ? 0 : -1}
+            $open={mobileMenuOpen}
+            onClick={closeMobileMenu}
+          />
+          <MobileMenuPanel
+            id="mobile-navigation"
+            $open={mobileMenuOpen}
+            aria-hidden={!mobileMenuOpen}
           >
-            {text}
-          </ContentLogo>
-          <ContentWrap>
-            <MenuContent>
-              {MENU.map((link) => (
-                <MenuContentLink
-                  key={link.label}
-                  active={isRouteActive(link.to, pathname)}
-                >
-                  <Link to={link.to}>{translator(link.label)}</Link>
-                </MenuContentLink>
-              ))}
-              <OptionLanguage />
-            </MenuContent>
-            <ButtonMenuMobile
+            <MobileMenuClose
               type="button"
-              aria-label={
-                mobileMenuOpen
-                  ? translator('Close menu')
-                  : translator('Open menu')
-              }
-              aria-expanded={mobileMenuOpen}
-              aria-controls="mobile-navigation"
-              $open={mobileMenuOpen}
-              onClick={() =>
-                mobileMenuOpen ? closeMobileMenu() : openMobileMenu()
-              }
+              aria-label={translator('Close menu')}
+              onClick={closeMobileMenu}
             >
-              {mobileMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
-            </ButtonMenuMobile>
-          </ContentWrap>
-        </Content>
-      </ContentNav>
-
-      <MobileMenuBackdrop
-        type="button"
-        aria-label={translator('Close menu')}
-        tabIndex={mobileMenuOpen ? 0 : -1}
-        $open={mobileMenuOpen}
-        onClick={closeMobileMenu}
-      />
-
-      <MobileMenuPanel
-        id="mobile-navigation"
-        $open={mobileMenuOpen}
-        aria-hidden={!mobileMenuOpen}
-      >
-        <MobileMenuClose
-          type="button"
-          aria-label={translator('Close menu')}
-          onClick={closeMobileMenu}
-        >
-          <AiOutlineClose />
-        </MobileMenuClose>
-        <MobileNavList>
-          {MENU.map((link) => (
-            <MobileNavItem
-              key={link.label}
-              $active={isRouteActive(link.to, pathname)}
-            >
-              <Link to={link.to} onClick={closeMobileMenu}>
-                {translator(link.label)}
-              </Link>
-            </MobileNavItem>
-          ))}
-        </MobileNavList>
-        <MobileMenuFooter>
-          <OptionLanguage />
-        </MobileMenuFooter>
-      </MobileMenuPanel>
-    </Container>
+              <AiOutlineClose />
+            </MobileMenuClose>
+            <MobileNavList>
+              {MENU.map((link) => (
+                <MobileNavItem
+                  key={link.label}
+                  $active={isRouteActive(link.to, pathname)}
+                >
+                  <Link to={link.to} onClick={closeMobileMenu}>
+                    {translator(link.label)}
+                  </Link>
+                </MobileNavItem>
+              ))}
+            </MobileNavList>
+            <MobileMenuFooter>
+              <OptionLanguage />
+            </MobileMenuFooter>
+          </MobileMenuPanel>
+        </MobileMenuLayer>,
+        document.body,
+      )}
+    </>
   )
 }

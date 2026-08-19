@@ -192,21 +192,36 @@ export const ButtonMenuMobile = styled.button<{ $open?: boolean }>`
   }
 `
 
+export const MobileMenuLayer = styled.div<{ $open: boolean }>`
+  display: none;
+
+  @media (max-width: ${NAV_BREAKPOINT}) {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    overflow: hidden;
+    pointer-events: ${({ $open }) => ($open ? 'auto' : 'none')};
+  }
+`
+
 export const MobileMenuBackdrop = styled.button<{ $open: boolean }>`
   display: none;
 
   @media (max-width: ${NAV_BREAKPOINT}) {
-    display: ${({ $open }) => ($open ? 'block' : 'none')};
-    position: fixed;
+    display: block;
+    position: absolute;
     inset: 0;
     border: none;
     padding: 0;
     margin: 0;
     background: #0000009e;
-    z-index: 90;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     backdrop-filter: blur(6px);
+    opacity: ${({ $open }) => ($open ? 1 : 0)};
+    pointer-events: ${({ $open }) => ($open ? 'auto' : 'none')};
+    transition: opacity 0.32s ease;
   }
 `
 
@@ -216,7 +231,7 @@ export const MobileMenuPanel = styled.aside<{ $open: boolean }>`
   @media (max-width: ${NAV_BREAKPOINT}) {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     height: 100%;
@@ -224,7 +239,6 @@ export const MobileMenuPanel = styled.aside<{ $open: boolean }>`
     width: min(20rem, 88vw);
     background: ${({ theme }) => theme['gray-900']};
     border-left: 1px solid ${({ theme }) => theme['gray-800']};
-    z-index: 100;
     padding: 3.5rem 1.25rem 1.5rem;
     box-shadow: -12px 0 40px #00000073;
     transform: translateX(${({ $open }) => ($open ? '0' : '100%')});
